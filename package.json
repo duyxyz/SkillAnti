@@ -1,0 +1,11 @@
+{
+  "name": "skill-anti",
+  "version": "1.0.0",
+  "description": "Initialize SkillAnti in your project",
+  "bin": {
+    "skill-anti": "./cli.js"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

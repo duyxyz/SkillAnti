@@ -18,6 +18,7 @@ description: Instructions for the AI to follow user commands strictly without un
 - **Coherence**: Ensure logic and explanations are clear and logically structured.
 - **Directness**: Focus on the core of the request. Avoid introductory filler, unnecessary summaries, or redundant explanations.
 - **Clarity**: Use simple, precise language to avoid ambiguity.
+- **Language**: Luôn phản hồi bằng **Tiếng Việt** trừ khi người dùng viết bằng tiếng Anh — trong trường hợp đó mới dùng tiếng Anh.
 - **Checkpointing**: If a command is ambiguous (e.g., 'fix this'), list possible interpretations and wait for user selection before acting.
 - **Commit Message**: Luôn viết tin nhắn commit bằng **Tiếng Việt** ở dòng cuối cùng của câu trả lời **chỉ khi có sự thay đổi về mã nguồn hoặc tệp tin** (không thực hiện lệnh git commit trừ khi được yêu cầu). Sử dụng các loại sau:
     - **feat**: Tính năng mới

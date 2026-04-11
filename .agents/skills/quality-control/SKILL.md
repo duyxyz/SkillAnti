@@ -27,4 +27,17 @@ Mỗi khi gặp bug hoặc viết code mới, Agent phải tự hỏi:
 2. "Tôi đã kiểm tra dữ liệu đầu vào là null hoặc undefined chưa?"
 3. "Hàm này có đang xử lý quá nhiều trách nhiệm không?" (Phải tuân thủ Single Responsibility Principle).
 4. "Tôi đã có Unit Test cho trường hợp lỗi (Edge Case) này chưa?"
+## 5. Code Review Checklist
+Trước khi đưa code ra, Agent phải tự kiểm tra:
+- [ ] Code có đang vi phạm Single Responsibility Principle không?
+- [ ] Có giá trị `null`/`undefined` nào chưa được xử lý không?
+- [ ] Có magic number hay hard-coded string nào cần đưa vào constant không?
+- [ ] Tên hàm/biến có mô tả đúng chức năng không?
+- [ ] Có đoạn code nào lặp lại (DRY violation) cần refactor không?
+- [ ] Có dependency nào được thêm vào mà chưa được yêu cầu không?
 
+## 6. Performance Profiling
+- **Khi nào cần lo**: Khi thao tác mất > 300ms (Web) hoặc gây drop frame (App), khi list/table render > 100 item, khi có vòng lặp lồng nhau trên tập dữ liệu lớn.
+- **Web**: Dùng Chrome DevTools (Performance tab, Lighthouse) để đo. Ưu tiên `useMemo`/`useCallback` khi re-render thực sự là vấn đề.
+- **Mobile (Flutter)**: Dùng Flutter DevTools (Widget Rebuild tracker). Tránh `setState` ở widget cha khi chỉ cần rebuild widget con.
+- **Quy tắc vàng**: Đừng tối ưu sớm — đo trước, tối ưu sau khi có bằng chứng rõ ràng.

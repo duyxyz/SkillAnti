@@ -1,10 +1,10 @@
 ---
-name: flutter-android
-description: Flutter Android Native-First Development skill. Use when building Android-only Flutter apps with Material 3, setting up project structure, configuring CI/CD with GitHub Actions, or following service-first architecture patterns.
+name: flutter-setup
+description: Flutter Android-only setup skill. Use when creating or standardizing a Flutter project with Material 3, Android-focused structure, environment configuration, and APK build workflow.
 ---
 
-# Skill: Flutter Android Native-First Development
-This skill defines the development patterns for building high-quality, Android-only Flutter applications using Material 3 and a standardized project structure.
+# Skill: Flutter Android-Only Setup
+This skill defines the setup and development patterns for building Android-only Flutter applications with Material 3 and a standardized project structure.
 ## Core Principles
 1.  **Platform Focus**: The project is exclusively for Android. All development, testing, and configuration must target Android features (Material 3, Android Permissions, Intent filters, etc.).
 2.  **UI/UX**: Strictly adhere to Material 3 (M3). Use `useMaterial3: true` in the `ThemeData`. Prioritize AMOLED black or high-fidelity custom color schemes.

@@ -1,3 +1,8 @@
+## Cài Đặt
+
+```bash
+npx skills add duyxyz/skills
+```
 
 ## Skills Hiện Có
 
@@ -7,10 +12,5 @@
 | `quality-control` | Truy vết lỗi, ghi log có cấu trúc, lập trình phòng vệ và checklist debug |
 | `clean-code` | Phân tách logic 3 lớp, quy chuẩn đặt tên và kiểm thử bắt buộc  |
 
-## Cài Đặt
-
-```bash
-npx skills add duyxyz/skills
-```
 
 

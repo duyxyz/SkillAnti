@@ -13,7 +13,7 @@ Bộ công cụ quản lý **skills** cho AI Agent — giúp tải, cài đặt 
 ## Cài đặt
 
 ```bash
-npx skills add duyxyz/SkillAnti
+npx skills add duyxyz/Skills
 ```
 
 

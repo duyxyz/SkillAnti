@@ -1,27 +1,27 @@
 ---
-name: setup-android-flutter-project
-description: >
-  Initialize a new Android-only Flutter project with Material 3, modular directory structure,
-  environment config, and VS Code setup. Use this skill when the user wants to create or scaffold
-  a new Flutter project — triggers include "tạo project mới", "init Flutter", "setup project",
-  "khởi tạo app Android", or any request to bootstrap a Flutter Android app from scratch.
+name: flutter-android-setup
+description: Use this skill when the user wants to initialize or scaffold a new Flutter Android-only project. Triggers include: setting up a new Flutter project for Android, bootstrapping Material 3, creating the standard lib/ directory structure, configuring VS Code for Flutter Android debugging, setting up .env and .gitignore, adding standard pubspec.yaml dependencies, or preparing a GitHub Actions workflow directory. Also use when the user asks to "start a new Flutter app" or "set up a Flutter Android project from scratch".
 ---
 
-# Setup Android Flutter Project
+This skill automates creating a new Flutter project targeting Android only, with Material 3, modular structure, environment security, and VS Code debug configuration.
 
-## 1. Initialize Project
+## Steps
+
+### 1. Initialize Project
 
 ```bash
 flutter create --platforms android .
 ```
 
-## 2. Scaffold Directory Structure
+### 2. Scaffold Directory Structure
 
 ```bash
 mkdir -p lib/screens lib/services lib/tabs lib/utils lib/widgets lib/assets/images lib/assets/fonts
 ```
 
-## 3. Bootstrap main.dart
+### 3. Bootstrap `main.dart`
+
+Overwrite the default `main.dart` with this Material 3 template:
 
 ```dart
 import 'package:flutter/material.dart';
@@ -79,10 +79,10 @@ class HomeScreen extends StatelessWidget {
 }
 ```
 
-## 4. Configure Environment and CI/CD
+### 4. Configure Environment and CI/CD
 
 ```bash
-# Create .env
+# Create .env template
 echo "SUPABASE_URL=your_url_here" > .env
 echo "SUPABASE_ANON_KEY=your_key_here" >> .env
 
@@ -93,7 +93,7 @@ echo ".env" >> .gitignore
 mkdir -p .github/workflows
 ```
 
-## 5. Update pubspec.yaml Dependencies
+### 5. Update `pubspec.yaml` Dependencies
 
 ```yaml
 dependencies:
@@ -106,9 +106,9 @@ dependencies:
   cached_network_image: ^3.4.1
 ```
 
-## 6. Configure VS Code
+### 6. Configure VS Code
 
-`.vscode/launch.json`:
+Create `.vscode/launch.json`:
 
 ```json
 {
@@ -123,9 +123,18 @@ dependencies:
 }
 ```
 
-## 7. Start Emulator and Run
+### 7. Start Emulator and Run
 
 ```bash
-adb devices   # Check connected devices
-flutter run   # Run app
+adb devices          # Check connected devices
+flutter run          # Run the app
 ```
+
+## Result
+
+After completing these steps, the project will have:
+- Android-only platform target
+- Material 3 dark theme with modular `lib/` structure
+- Environment secrets secured via `.env` + `.gitignore`
+- GitHub Actions directory ready for `build_apk.yml`
+- VS Code F5 debug configured for Android

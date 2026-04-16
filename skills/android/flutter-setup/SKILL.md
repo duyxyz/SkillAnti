@@ -32,7 +32,8 @@ Toàn bộ mã nguồn nằm trong thư mục `lib/`, được tổ chức như 
     - Sử dụng tệp `.env` hoặc `dart-define`. Đảm bảo `.env` đã được thêm vào `.gitignore`.
 
 ## CI/CD và Tự động hóa
-1.  **GitHub Actions**: Duy trì `.github/workflows/build_apk.yml` để tự động hóa việc phát hành.
+1.  **Quy trình chuyên sâu**: Xem thêm tại [Kỹ năng CI/CD & DevOps](file:///c:/Users/PC/Documents/Github/skills/skills/android/cicd-devops/SKILL.md) và [Quy trình Triển khai Google Play](file:///c:/Users/PC/Documents/Github/skills/skills/android/cicd-devops/Workflow/google-play-deploy.md).
+2.  **GitHub Actions**: Duy trì `.github/workflows/build_apk.yml` cho các bản dựng phát hành thủ công.
 2.  **Đăng ký Tài sản**: Đảm bảo đăng ký đầy đủ hình ảnh/phông chữ mới trong mục `flutter: assets:` của `pubspec.yaml`.
 
 ## Hướng dẫn Phát triển

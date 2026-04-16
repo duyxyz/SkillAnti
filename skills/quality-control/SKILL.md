@@ -18,15 +18,15 @@ description: Quy chuẩn về kiểm soát mã nguồn, log lỗi và các check
 
 ## 3. Defensive Programming (Lập trình phòng vệ)
 - **Input Validation**: Luôn kiểm tra tính hợp lệ của dữ liệu đầu vào (Zod, Joi, hoặc logic thủ công) trước khi xử lý.
-- **Fail Fast**: Thiết kế hệ thống để lỗi xảy ra ngay lập tức tại điểm có vấn đề, thay vì để nó lan truyền sang các module khác.
-- **Default States**: Luôn định nghĩa trạng thái mặc định an toàn cho UI và dữ liệu để tránh lỗi "undefined" hoặc "null".
+- **Fail Fast**: Thiết kế hệ thống để lỗi xảy ra ngay lập tức tại điểm có vấn đề.
+- **Default States**: Luôn định nghĩa trạng thái mặc định an toàn cho UI và dữ liệu.
 
-## 4. Debugging Checklist for Agent
-Mỗi khi gặp bug hoặc viết code mới, Agent phải tự hỏi:
-1. "Nếu đoạn code này lỗi ở máy khách hàng, tôi có đủ log để biết tại sao không?"
-2. "Tôi đã kiểm tra dữ liệu đầu vào là null hoặc undefined chưa?"
-3. "Hàm này có đang xử lý quá nhiều trách nhiệm không?" (Phải tuân thủ Single Responsibility Principle).
-4. "Tôi đã có Unit Test cho trường hợp lỗi (Edge Case) này chưa?"
+## 4. Kiểm tra Gỡ lỗi (Debugging Checklist)
+Mỗi khi gặp bug hoặc viết code mới, hãy tự hỏi:
+1. "Nếu đoạn code này lỗi ở máy khách hàng, tôi có đủ thông tin log để biết tại sao không?"
+2. "Tôi đã kiểm tra các trường hợp dữ liệu null hoặc undefined chưa?"
+3. "Hàm này có tuân thủ Single Responsibility Principle không?"
+4. "Đã có Unit Test cho trường hợp lỗi (Edge Case) này chưa?"
 ## 5. Code Review Checklist
 Trước khi đưa code ra, Agent phải tự kiểm tra:
 - [ ] Code có đang vi phạm Single Responsibility Principle không?

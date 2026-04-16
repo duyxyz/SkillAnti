@@ -1,61 +1,65 @@
 ---
 name: flutter-setup
-description: Flutter Android-only setup skill. Use when creating or standardizing a Flutter project with Material 3, feature-based clean architecture, environment configuration, and APK build workflow.
+description: Kỹ năng thiết lập Flutter chỉ dành cho Android. Sử dụng khi tạo hoặc chuẩn hóa dự án Flutter với Material 3, kiến trúc sạch dựa trên tính năng, cấu hình môi trường và quy trình xây dựng APK.
 ---
 
-# Skill: Flutter Android-Only Setup
-This skill defines the setup and development patterns for building Android-only Flutter applications with Material 3 and a feature-based clean architecture structure.
-## Core Principles
-1.  **Platform Focus**: The project is exclusively for Android. All development, testing, and configuration must target Android features (Material 3, Android Permissions, Intent filters, etc.).
-2.  **UI/UX**: Strictly adhere to Material 3 (M3). Use `useMaterial3: true` in the `ThemeData`. Prioritize AMOLED black or high-fidelity custom color schemes.
-3.  **Project Organization**: Maintain a feature-based clean architecture structure for scalability and testability.
-## Directory Structure
-All source code resides in `lib/`, organized as follows:
-- `lib/features/`: Each feature owns its `presentation/`, `domain/`, and `data/` layers.
-- `lib/features/<feature>/presentation/`: Screens, widgets, and local presentation state.
-- `lib/features/<feature>/domain/`: Entities, use cases, and business rules.
-- `lib/features/<feature>/data/`: Repositories, models, remote/local data sources.
-- `lib/shared/`: Reusable widgets and shared presentation helpers.
-- `lib/core/`: App-wide config, theme, constants, error types, and utilities.
-- `assets/`: Images, fonts, and other static assets registered in `pubspec.yaml`.
-## Architecture and Logic
-1.  **Feature-Based Clean Architecture**:
-    - Presentation must only handle UI rendering, input handling, and view state.
-    - Domain must contain business logic, entities, and use cases independent of frameworks.
-    - Data must contain repositories, DTOs/models, and API or local storage integrations.
-    - Screens and Widgets must not call APIs directly; they should go through use cases or repositories exposed by the feature.
-2.  **State Management**:
-    - Use local widget state for simple UI-only interactions.
-    - Use `Provider` for small scope dependency injection or state sharing.
-    - Use `BLoC` when the feature has complex event/state flows and needs strong testability.
-3.  **Environment Variables**:
-    - Sensitive information (API Keys, Supabase URL, GitHub Tokens) **MUST NOT** be hard-coded.
-    - Use a `.env` file or `dart-define` for secrets, depending on the project's deployment needs.
-    - Ensure `.env` is added to `.gitignore`.
-## CI/CD and Automation
-1.  **GitHub Actions**:
-    - Maintain a `.github/workflows/build_apk.yml` for automated releases.
-    - This workflow should trigger manually (`workflow_dispatch`) to build and upload release APKs (e.g., `v1.0.X`).
-2.  **Asset Registration**:
-    - When adding new images or fonts to `assets/`, ensure they are registered in the `flutter: assets:` section of `pubspec.yaml`.
-## Development Guidelines
-### 1. Initialization
-When starting a new project, use:
+# Kỹ năng: Thiết lập Flutter (Chỉ dành cho Android)
+
+Kỹ năng này định nghĩa các khuôn mẫu thiết lập và phát triển cho các ứng dụng Flutter chỉ dành cho Android với Material 3 và cấu trúc kiến trúc sạch dựa trên tính năng.
+
+## Nguyên tắc Cốt lõi
+1.  **Tập trung Nền tảng**: Dự án dành riêng cho Android. Mọi hoạt động phát triển, kiểm thử và cấu hình phải hướng tới các tính năng của Android (Material 3, Quyền Android, Intent filters, v.v.).
+2.  **Giao diện (UI/UX)**: Tuân thủ nghiêm ngặt Material 3 (M3). Sử dụng `useMaterial3: true` trong `ThemeData`. Ưu tiên màu đen AMOLED hoặc các bảng màu tùy chỉnh chất lượng cao.
+3.  **Tổ chức Dự án**: Duy trì cấu trúc kiến trúc sạch dựa trên tính năng để đảm bảo khả năng mở rộng và kiểm thử. Xem chi tiết tại [Tiêu chuẩn Kiến trúc Sạch (Chủ đạo)](file:///c:/Users/PC/Documents/Github/skills/skills/clean-code/SKILL.md).
+
+## Cấu trúc Thư mục
+Toàn bộ mã nguồn nằm trong thư mục `lib/`, được tổ chức như sau:
+- `lib/features/`: Mỗi tính năng sở hữu các lớp `presentation/`, `domain/`, và `data/` riêng.
+- `lib/shared/`: Các widget có thể tái sử dụng và các helper hiển thị chung.
+- `lib/core/`: Cấu hình toàn bộ ứng dụng, theme, hằng số, các loại lỗi và tiện ích (utilities).
+- `assets/`: Hình ảnh, phông chữ và các tài sản tĩnh khác được đăng ký trong `pubspec.yaml`.
+
+## Kiến trúc và Logic
+1.  **Kiến trúc Sạch dựa trên Tính năng**:
+    - Tuân thủ các quy tắc phân tách lớp trong [Tiêu chuẩn Kiến trúc Sạch](file:///c:/Users/PC/Documents/Github/skills/skills/clean-code/SKILL.md).
+    - Các màn hình (Screens) và Widget không được gọi API trực tiếp; chúng phải đi qua các use case hoặc repository được cung cấp bởi tính năng đó.
+2.  **Quản lý Trạng thái (State Management)**:
+    - Sử dụng local widget state cho các tương tác UI đơn giản.
+    - Sử dụng `Provider` cho các phụ thuộc nhỏ hoặc chia sẻ trạng thái đơn giản.
+    - Sử dụng `BLoC` khi tính năng có các luồng sự kiện/trạng thái phức tạp và cần khả năng kiểm thử cao.
+3.  **Biến Môi trường**:
+    - Thông tin nhạy cảm (API Keys, Token) **KHÔNG ĐƯỢC** viết trực tiếp vào code (hardcode).
+    - Sử dụng tệp `.env` hoặc `dart-define`. Đảm bảo `.env` đã được thêm vào `.gitignore`.
+
+## CI/CD và Tự động hóa
+1.  **GitHub Actions**: Duy trì `.github/workflows/build_apk.yml` để tự động hóa việc phát hành.
+2.  **Đăng ký Tài sản**: Đảm bảo đăng ký đầy đủ hình ảnh/phông chữ mới trong mục `flutter: assets:` của `pubspec.yaml`.
+
+## Hướng dẫn Phát triển
+### 1. Khởi tạo Dự án
+Sử dụng lệnh sau để đảm bảo không tạo ra các thư mục cho nền tảng khác:
 ```bash
 flutter create --platforms android .
 ```
-This ensures no `ios`, `macos`, `web`, or other platform folders are created.
-### 2. Standard Material 3 setup
-Always use `useMaterial3: true` in `ThemeData`. For "AMOLED" mode, use:
+
+### 2. Thiết lập Material 3 & AMOLED
+Để đạt được chế độ "đen tuyệt đối" (AMOLED), hãy cấu hình `ThemeData` như sau:
 ```dart
 theme: ThemeData(
   useMaterial3: true,
-  scaffoldBackgroundColor: Colors.black, // True black
-  colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue, brightness: Brightness.dark),
+  brightness: Brightness.dark,
+  scaffoldBackgroundColor: Colors.black,
+  appBarTheme: const AppBarTheme(backgroundColor: Colors.black, elevation: 0),
+  colorScheme: ColorScheme.fromSeed(
+    seedColor: Colors.blue,
+    brightness: Brightness.dark,
+    surface: Colors.black, // Đảm bảo các bề mặt cũng có màu đen
+  ),
 )
 ```
+
 ### 3. VS Code Setup
-Ensure `.vscode/launch.json` is configured specifically for Android:
+Cấu hình `.vscode/launch.json` dành riêng cho Android:
 ```json
 {
   "name": "Flutter Android",
@@ -64,20 +68,13 @@ Ensure `.vscode/launch.json` is configured specifically for Android:
   "deviceId": "android"
 }
 ```
-### 4. Feature Bootstrap
-When creating a new feature, follow this structure:
-```text
-lib/features/auth/
-  presentation/
-  domain/
-  data/
-```
-Keep cross-feature utilities in `lib/core/` and reusable widgets in `lib/shared/`.
-### 5. Running the App
-1.  Check for devices: `adb devices`
-2.  If no device found, start the first emulator: `emulator -avd <name>`
-3.  Run app: `flutter run`
-## AI Response Pattern
-- **Code Generation**: Place code in the appropriate `presentation`, `domain`, or `data` layer for the target feature.
-- **Security Check**: Remind the user about `.env` if they hard-code keys.
-- **Build Support**: If the user asks for a build, guide them to use the `build_apk.md` workflow.
+
+### 4. Chạy ứng dụng
+1. Kiểm tra thiết bị: `adb devices`
+2. Nếu không có thiết bị, khởi động emulator: `emulator -avd <tên_máy_ảo>`
+3. Chạy App: `flutter run`
+
+## Kế hoạch Phản hồi của AI
+- **Sinh mã**: Đặt mã vào đúng lớp (presentation, domain, data) của tính năng mục tiêu.
+- **Kiểm tra bảo mật**: Nhắc nhở người dùng về `.env` nếu họ hard-code phím.
+- **Hỗ trợ Build**: Nếu người dùng yêu cầu build, hãy hướng dẫn họ sử dụng workflow `build-apk.md`.

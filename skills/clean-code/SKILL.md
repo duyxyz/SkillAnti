@@ -3,7 +3,10 @@ name: Clean Architecture & Testing
 description: Quy định nghiêm ngặt về phân tách logic, kiến trúc sạch và bắt buộc kiểm thử cho mọi tính năng.
 ---
 
-# Clean Architecture & Testing Standard (Web & App)
+# Tiêu chuẩn Kiến trúc Sạch & Kiểm thử (Chủ đạo)
+
+> [!NOTE]
+> Đây là tài liệu kiến trúc nền tảng. Khi làm việc với các nền tảng cụ thể (như Flutter), hãy kết hợp với kỹ năng tương ứng (ví dụ: `flutter-setup`).
 
 ## 1. Logic Separation (Phân tách Logic)
 - **Presentation Layer (Giao diện)**: 

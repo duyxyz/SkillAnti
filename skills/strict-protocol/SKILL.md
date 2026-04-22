@@ -1,25 +1,25 @@
 ---
-name: Tuân thủ Mệnh lệnh Nghiêm ngặt & Giao tiếp Súc tích
-description: Các chỉ dẫn để AI tuân thủ nghiêm ngặt mệnh lệnh của người dùng mà không tự ý thay đổi, kèm theo yêu cầu giao tiếp ngắn gọn.
+name: Strict Command Compliance & Concise Communication
+description: Instructions for the AI to strictly adhere to user commands without arbitrary changes, coupled with concise communication requirements.
 ---
 
-# Giao thức Tương tác
+# Interaction Protocol
 
-## 1. Tuân thủ Nghiêm ngặt Mệnh lệnh
-- **Không tự ý thêm Logic**: Không tự động thực hiện các hành động lệch khỏi hoặc bổ sung vào chỉ dẫn cụ thể của người dùng.
-- **Không tự ý thay đổi UI**: Không sửa đổi giao diện người dùng (kiểu dáng, bố cục, thành phần) trừ khi được yêu cầu rõ ràng.
-- **Không tự ý thêm tính năng**: Không tự động thêm, xóa hoặc "nâng cấp" các tính năng mà không có lệnh trực tiếp.
-- **Không tự động dọn dẹp**: Không xóa hoặc refactor mã nguồn hoặc tài sản hiện có trừ khi được chỉ định cụ thể.
-- **Không tự ý thêm thư viện**: Không bao giờ cài đặt hoặc thêm các package mới trừ khi được lệnh rõ ràng.
-- **Đề xuất Refactor**: Nếu thấy tiềm năng tối ưu hóa lớn hoặc lỗi bảo mật, hãy đề xuất trong một khối riêng ở cuối. KHÔNG bao giờ áp dụng vào mã nguồn mà không có sự đồng ý.
+## 1. Strict Command Compliance
+- **No Arbitrary Logic**: Do not automatically perform actions that deviate from or supplement specific user instructions.
+- **No Arbitrary UI Changes**: Do not modify the user interface (styles, layout, components) unless explicitly requested.
+- **No Arbitrary Feature Additions**: Do not automatically add, remove, or "upgrade" features without a direct command.
+- **No Automatic Cleanup**: Do not delete or refactor existing source code or assets unless specifically designated.
+- **No Arbitrary Library Additions**: Never install or add new packages unless explicitly ordered.
+- **Refactor Proposals**: If significant optimization potential or security flaws are identified, propose them in a separate block at the end. NEVER apply to source code without consent.
 
-## 2. Phong cách Giao tiếp
-- **Súc tích**: Câu trả lời phải ngắn gọn và đúng trọng tâm.
-- **Mạch lạc**: Đảm bảo logic và giải thích rõ ràng, có cấu trúc.
-- **Trực tiếp**: Tập trung vào cốt lõi của yêu cầu. Tránh các câu chào hỏi rườm rà, tóm tắt không cần thiết.
-- **Rõ ràng**: Sử dụng ngôn ngữ đơn giản, chính xác để tránh mơ hồ.
-- **Ngôn ngữ**: Luôn phản hồi bằng **Tiếng Việt** trừ khi người dùng viết bằng tiếng Anh.
-- **Điểm dừng xác nhận**: Nếu lệnh mơ hồ (ví dụ: 'sửa cái này'), hãy liệt kê các cách hiểu có thể và đợi người dùng chọn trước khi hành động.
+## 2. Communication Style
+- **Concise**: Answers must be brief and to the point.
+- **Coherent**: Ensure logic and explanations are clear and structured.
+- **Direct**: Focus on the core of the request. Avoid lengthy greetings or unnecessary summaries.
+- **Clarity**: Use simple, precise language to avoid ambiguity.
+- **Language**: Luôn phản hồi bằng **Tiếng Việt** trừ khi người dùng viết bằng tiếng Anh.
+- **Confirmation Checkpoints**: If a command is ambiguous (e.g., 'fix this'), list possible interpretations and wait for the user to choose before acting.
 - **Commit Message**: Luôn viết tin nhắn commit bằng **Tiếng Việt** ở dòng cuối cùng của câu trả lời **chỉ khi có sự thay đổi về mã nguồn hoặc tệp tin**. Sử dụng các loại sau:
     - **feat**: Tính năng mới
     - **fix**: Sửa lỗi
@@ -29,7 +29,7 @@ description: Các chỉ dẫn để AI tuân thủ nghiêm ngặt mệnh lệnh 
     - **test**: Kiểm thử
     - **chore**: Bảo trì
 
-## 3. Quy trình Làm việc
-- Luôn xác nhận phạm vi cụ thể của một yêu cầu trước khi thực hiện các thay đổi lớn nếu lệnh mơ hồ.
-- Khi một chỉ dẫn được hoàn thành, hãy cung cấp xác nhận ngắn gọn về những gì đã thay đổi và không thêm gì khác.
-- **Đồng bộ Cấu hình**: Khi chỉnh sửa mã, luôn kiểm tra `package.json` hoặc các tệp cấu hình liên quan để đảm bảo tính tương thích.
+## 3. Workflow
+- Always confirm the specific scope of a request before making major changes if the command is ambiguous.
+- When an instruction is completed, provide a brief confirmation of what has changed and add nothing else.
+- **Configuration Synchronization**: When editing code, always check `package.json` or related configuration files to ensure compatibility.

@@ -1,34 +1,34 @@
 ---
-name: github-automation
-description: Kỹ năng tự động hóa quy trình trên GitHub bao gồm gắn thẻ phiên bản (tag), tối ưu hóa bộ nhớ đệm (cache) và quản lý Pull Request.
+name: GitHub Automation
+description: Skills for automating workflows on GitHub including version tagging (tags), cache optimization, and Pull Request management.
 ---
 
-# Kỹ năng: GitHub Automation
+# Skill: GitHub Automation
 
-Kỹ năng này giúp tối ưu hóa việc sử dụng GitHub làm nền tảng CI/CD và cộng tác.
+This skill helps optimize the use of GitHub as a CI/CD and collaboration platform.
 
-## 1. Tự động gắn thẻ Phiên bản (Auto-tagging)
-- **Quy tắc đếm tùy chỉnh**:
-    - Patch (số cuối) tăng từ 0 đến 9.
-    - Khi Patch chạm ngưỡng 9, lần tăng tiếp theo sẽ reset Patch về 0 và tăng Minor (số giữa).
-    - Ví dụ: `1.0.8` -> `1.0.9` -> `1.1.0`.
-- **Thực thi**: Nên được thực hiện tự động qua GitHub Actions sau khi code được merge vào nhánh chính.
+## 1. Auto-tagging
+- **Custom Counting Rules**:
+    - Patch (last number) increments from 0 to 9.
+    - When Patch hits 9, the next increment resets Patch to 0 and increments Minor (middle number).
+    - Example: `1.0.8` -> `1.0.9` -> `1.1.0`.
+- **Execution**: Should be performed automatically via GitHub Actions after code is merged into the main branch.
 
-## 2. Tối ưu hóa Cache Build
-- **Mục tiêu**: Giảm thời gian chờ đợi CI bằng cách lưu trữ các tài nguyên nặng.
+## 2. Build Cache Optimization
+- **Goal**: Reduce CI wait times by caching heavy resources.
 - **Flutter Caching**:
-    - Cache thư mục `pub-cache`.
-    - Cache Gradle wrapper và dependencies cho Android.
-- **Tooling**: Sử dụng `actions/cache@v4` với các key dựa trên mã băm (hash) của `pubspec.lock`.
+    - Cache the `pub-cache` directory.
+    - Cache Gradle wrapper and dependencies for Android.
+- **Tooling**: Use `actions/cache@v4` with keys based on the hash of `pubspec.lock`.
 
-## 3. Quản lý Pull Request & Issue
-- **PR Templates**: Sử dụng tệp `.github/pull_request_template.md` để yêu cầu thông tin đầy đủ về thay đổi, danh sách kiểm tra (checklist) và ảnh chụp màn hình nếu có thay đổi UI.
-- **Labels**: Tự động gắn nhãn (label) dựa trên loại thay đổi (feat, fix, docs).
+## 3. Pull Request & Issue Management
+- **PR Templates**: Use a `.github/pull_request_template.md` file to require complete information about changes, a checklist, and screenshots if UI changes are made.
+- **Labels**: Automatically assign labels based on the type of change (feat, fix, docs).
 
 ## 4. GitHub Releases
-- **Changelog Tự động**: Tích hợp các công cụ tự động tạo ghi chú phát hành (release notes) dựa trên các tiêu đề commit.
-- **Draft Releases**: Luôn tạo bản nháp (Draft) trước khi công bố chính thức để kiểm tra lại các tệp binary đính kèm.
+- **Automated Changelog**: Integrate tools that automatically generate release notes based on commit headers.
+- **Draft Releases**: Always create a Draft before publishing officially to re-verify attached binary files.
 
-## Tham chiếu liên quan
-- [CI/CD & DevOps (Android)](file:///c:/Users/PC/Documents/Github/skills/skills/android/cicd-devops/SKILL.md)
-- [Giao thức Tương tác (Strict Protocol)](file:///c:/Users/PC/Documents/Github/skills/skills/strict-protocol/SKILL.md)
+## Related References
+- [CI/CD & DevOps (Android)](file:///c:/Users/PC/Documents/Github/skills/skills/android-su/cicd-devops/SKILL.md)
+- [Interaction Protocol (Strict Protocol)](file:///c:/Users/PC/Documents/Github/skills/skills/strict-protocol/SKILL.md)

@@ -1,75 +1,75 @@
 ---
 name: Clean Architecture & Testing
-description: Quy định nghiêm ngặt về phân tách logic, kiến trúc sạch và bắt buộc kiểm thử cho mọi tính năng.
+description: Strict regulations on logic separation, clean architecture, and mandatory testing for every feature.
 ---
 
-# Tiêu chuẩn Kiến trúc Sạch & Kiểm thử (Chủ đạo)
+# Clean Architecture & Testing Standard (Main)
 
 > [!NOTE]
-> Đây là tài liệu kiến trúc nền tảng. Khi làm việc với các nền tảng cụ thể (như Flutter), hãy kết hợp với kỹ năng tương ứng (ví dụ: [Thiết lập Android](file:///c:/Users/PC/Documents/Github/skills/skills/android/flutter-setup/SKILL.md)).
+> This is a foundational architecture document. When working with specific platforms (like Flutter), combine it with the corresponding skill (e.g., [Android Setup](file:///c:/Users/PC/Documents/Github/skills/skills/android-su/flutter-setup/SKILL.md)).
 
-## 1. Logic Separation (Phân tách Logic)
-- **Presentation Layer (Giao diện)**: 
+## 1. Logic Separation
+- **Presentation Layer**: 
     - **Web**: Components (React/Vue/HTML).
     - **App**: Mobile Screens/Widgets (React Native, Flutter, Swift/Kotlin).
-    - Chỉ chứa logic hiển thị. Không chứa logic nghiệp vụ hoặc gọi API trực tiếp.
-- **Domain Layer (Nghiệp vụ)**: Chứa các Business Logic, Entities, và Use Cases độc lập với nền tảng.
-- **Data Layer (Dữ liệu)**: Quản lý API, Caching (LocalStorage/SQLite), và Repositories.
+    - Contains only display logic. Do not include business logic or direct API calls.
+- **Domain Layer**: Contains Business Logic, Entities, and Use Cases independent of the platform.
+- **Data Layer**: Manages APIs, Caching (LocalStorage/SQLite), and Repositories.
 
 ## 2. State Management
-- **Web**: Dùng **Zustand** cho trạng thái đơn giản/vừa. Dùng **Redux Toolkit** khi state phức tạp, cần time-travel debug hoặc nhiều slice liên kết nhau.
-- **Mobile (Flutter)**: Dùng **Provider** cho scope nhỏ. Dùng **BLoC** khi cần tách biệt Event/State rõ ràng và testable.
-- **Quy tắc chung**: State toàn cục chỉ lưu dữ liệu thực sự cần share. State cục bộ (UI state) phải nằm trong component/widget, không đưa lên global store.
+- **Web**: Use **Zustand** for simple/medium state. Use **Redux Toolkit** when state is complex, requires time-travel debugging, or has many linked slices.
+- **Mobile (Flutter)**: Use **Provider** for small scopes. Use **BLoC** when clear Event/State separation and testability are required.
+- **General Rule**: Global state should only store data that truly needs to be shared. Local state (UI state) must remain within the component/widget and not be pushed to the global store.
 
-## 3. Naming Conventions (Quy chuẩn đặt tên)
-- **Web/App Files**: Sử dụng `kebab-case` hoặc theo chuẩn riêng của nền tảng (ví dụ: PascalCase cho Component).
+## 3. Naming Conventions
+- **Web/App Files**: Use `kebab-case` or follow platform-specific standards (e.g., PascalCase for Components).
 - **Suffixes**:
-    - `*.component.*`, `*.screen.*`, `*.widget.*`: Cho thành phần giao diện.
-    - `*.service.*`, `*.usecase.*`: Cho logic nghiệp vụ.
-    - `*.test.*`: Cho Unit Test.
-- **Platform Agnostic**: Ưu tiên đặt tên file phản ánh chức năng hơn là công nghệ (ví dụ: `auth.service.ts` thay vì `auth.axios.ts`).
+    - `*.component.*`, `*.screen.*`, `*.widget.*`: For UI components.
+    - `*.service.*`, `*.usecase.*`: For business logic.
+    - `*.test.*`: For Unit Tests.
+- **Platform Agnostic**: Prioritize naming files based on function rather than technology (e.g., `auth.service.ts` instead of `auth.axios.ts`).
 
 ## 4. Folder Structure
 ```
 # Web (React/Next.js)
 src/
-  components/      # UI thuần túy, tái sử dụng
-  features/        # Mỗi feature có components, services, hooks riêng
+  components/      # Pure, reusable UI
+  features/        # Each feature has its own components, services, and hooks
   services/        # Business logic, API calls
   store/           # State management
   types/           # TypeScript types/interfaces
 
 # Mobile (Flutter)
 lib/
-  features/        # Mỗi feature có presentation, domain, data
+  features/        # Each feature has presentation, domain, and data
     auth/
       presentation/ # Screens, Widgets
       domain/       # UseCases, Entities
       data/         # Repositories, Models
-  shared/          # Widget dùng chung
+  shared/          # Shared widgets
   core/            # Config, constants, themes
 ```
 
-## 5. Testing Requirements (Yêu cầu kiểm thử)
-- **Unit Testing (Universal)**: Sử dụng **Jest** hoặc framework mặc định của nền tảng (ví dụ: `flutter_test`). Bắt buộc cho Domain Layer.
+## 5. Testing Requirements
+- **Unit Testing (Universal)**: Use **Jest** or the platform's default framework (e.g., `flutter_test`). Mandatory for the Domain Layer.
 - **UI/Integration Testing**:
     - **Web**: React Testing Library, Playwright.
     - **App**: Interaction tests, Widget tests.
 - **End-to-End (E2E) Testing**:
     - **Web**: Cypress, Playwright.
-    - **App**: Maestro, Appium hoặc công cụ native tương đương.
-- **CI/CD Integration**: Mọi quy trình kiểm thử phải được tích hợp vào luồng tự động hóa. Xem chi tiết tại [Kỹ năng CI/CD & DevOps](file:///c:/Users/PC/Documents/Github/skills/skills/android/cicd-devops/SKILL.md).
+    - **App**: Maestro, Appium, or equivalent native tools.
+- **CI/CD Integration**: Every testing process must be integrated into the automation flow. See details in the [CI/CD & DevOps Skill](file:///c:/Users/PC/Documents/Github/skills/skills/android-su/cicd-devops/SKILL.md).
 
 ## 6. Platform Optimization
-- **Responsive (Web)**: Luôn kiểm tra Mobile-first design.
-- **Performance (App)**: Kiểm tra memory leaks, tối ưu hóa kích thước bundle/binary.
-- **Offline-first**: Thiết kế lớp Data để hỗ trợ caching và hoạt động offline khi cần thiết.
+- **Responsive (Web)**: Always follow a Mobile-first design.
+- **Performance (App)**: Check for memory leaks, optimize bundle/binary size.
+- **Offline-first**: Design the Data layer to support caching and offline functionality where necessary.
 
-## 7. Error Handling (Xử lý lỗi)
-- Không sử dụng `console.log` để log lỗi trong sản phẩm thực tế.
-- Sử dụng cấu trúc `try/catch` có mục đích, kèm theo thông báo thân thiện cho người dùng và log chi tiết cho hệ thống (ví dụ: Sentry).
-- Luôn định nghĩa các Error Class riêng cho các lỗi nghiệp vụ đặc thù.
+## 7. Error Handling
+- Do not use `console.log` to log errors in actual products.
+- Use purposeful `try/catch` structures, accompanied by user-friendly messages for the user and detailed logs for the system (e.g., Sentry).
+- Always define custom Error Classes for specific business errors.
 
 ## 8. Workflow
-- Trước khi hoàn thành một yêu cầu, Agent phải kiểm tra xem đã có tệp test tương ứng chưa. Nếu chưa có, **chỉ đề xuất** tạo test ở cuối câu trả lời — không tự tạo khi chưa được yêu cầu.
-- Tuyệt đối không xóa bỏ các tệp test cũ trừ khi logic tương ứng bị loại bỏ.
+- Before completing a request, the Agent must check if a corresponding test file exists. If it does not exist, **only propose** creating a test at the end of the response — do not create it unless requested.
+- Never delete existing test files unless the corresponding logic is removed.

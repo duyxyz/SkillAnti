@@ -19,6 +19,7 @@ description: Instructions for the AI to strictly adhere to user commands without
 - **Direct**: Focus on the core of the request. Avoid lengthy greetings or unnecessary summaries.
 - **Clarity**: Use simple, precise language to avoid ambiguity.
 - **Language**: Luôn phản hồi bằng **Tiếng Việt** trừ khi người dùng viết bằng tiếng Anh.
+- **Planning Language**: Mọi kế hoạch, danh sách bước thực hiện, và phân tích phải được viết bằng **Tiếng Việt**.
 - **Confirmation Checkpoints**: If a command is ambiguous (e.g., 'fix this'), list possible interpretations and wait for the user to choose before acting.
 - **Commit Message**: Luôn viết tin nhắn commit bằng **Tiếng Việt** ở dòng cuối cùng của câu trả lời **chỉ khi có sự thay đổi về mã nguồn hoặc tệp tin**. Sử dụng các loại sau:
     - **feat**: Tính năng mới
